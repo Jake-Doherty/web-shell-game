@@ -1,13 +1,33 @@
 /* Imports */
 // import { getRandomItem } from './utils.js';
 
+import { getRandomItem } from './utils.js';
+
 /* State */
-let gameState = 'guess';
+let gameState = 'guess'; // guess or results
+let guess = ''; // left, right, middle
+let lift = ''; // left, right, middle
+let result = ''; // win/lose
+
+let totalGames = 0;
+let wins = 0;
+
+// Probability Array
+const choices = ['left', 'middle', 'right'];
 
 /* Actions */
 function loadPage() {
     displayShells();
 }
+
+function liftShell(userGuess) {
+    gameState = 'results';
+    guess = userGuess;
+    lift = getRandomItem(choices);
+    totalGames++;
+    console.log();
+}
+
 /* Components */
 
 /* Component */
@@ -45,6 +65,15 @@ function displayShells() {
 }
 
 // event listeners
+guess1.addEventListener('click', () => {
+    liftShell('left');
+});
+guess2.addEventListener('click', () => {
+    liftShell('middle');
+});
+guess3.addEventListener('click', () => {
+    liftShell('right');
+});
 
 // Results
 const display1 = document.getElementById('display-1');

@@ -18,6 +18,17 @@ const choices = ['left', 'middle', 'right'];
 /* Actions */
 function loadPage() {
     displayShells();
+    displayResults();
+}
+
+function pearlLocation() {
+    if (lift === 'left') {
+        pearl1.classList.remove('hidden');
+    } else if (lift === 'middle') {
+        pearl2.classList.remove('hidden');
+    } else if (lift === 'right') {
+        pearl3.classList.remove('hidden');
+    }
 }
 
 function liftShell(userGuess) {
@@ -25,7 +36,15 @@ function liftShell(userGuess) {
     guess = userGuess;
     lift = getRandomItem(choices);
     totalGames++;
-    console.log();
+
+    if (guess === lift) {
+        result = 'win';
+        wins++;
+    } else {
+        result = 'lose';
+    }
+
+    loadPage();
 }
 
 /* Components */
@@ -34,9 +53,9 @@ function liftShell(userGuess) {
 // get DOM
 
 // Scoreboard
-const totalDisplay = document.getElementById('total-display');
-const winsDisplay = document.getElementById('wins-display');
-const lossesDisplay = document.getElementById('losses-display');
+// const totalDisplay = document.getElementById('total-display');
+// const winsDisplay = document.getElementById('wins-display');
+// const lossesDisplay = document.getElementById('losses-display');
 
 // Shells
 const shell1 = document.getElementById('shell-1');
@@ -59,6 +78,7 @@ function displayShells() {
     if (gameState === 'guess') {
         shell1.classList.remove('reveal');
         resultSection.classList.add('hidden');
+        pearl1.classList.add('hidden');
         display1.classList.add('hidden');
         display2.classList.add('hidden');
     }
@@ -66,23 +86,28 @@ function displayShells() {
 
 // event listeners
 guess1.addEventListener('click', () => {
+    shell1.classList.add('reveal');
     liftShell('left');
+    gameState = 'results';
 });
 guess2.addEventListener('click', () => {
+    shell2.classList.add('reveal');
     liftShell('middle');
 });
 guess3.addEventListener('click', () => {
+    shell3.classList.add('reveal');
     liftShell('right');
 });
 
 // Results
 const display1 = document.getElementById('display-1');
 const display2 = document.getElementById('display-2');
-const display3 = document.getElementById('display-3');
+// const display3 = document.getElementById('display-3');
 const resultSection = document.getElementById('results');
 
 function displayResults() {
     if (gameState === 'results') {
+        pearlLocation();
     }
 }
 

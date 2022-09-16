@@ -5,7 +5,6 @@ import { getRandomItem } from './utils.js';
 let gameState = 'guess'; // guess or results
 let guess = ''; // left, right, middle
 let lift = ''; // left, right, middle
-// gi
 
 let totalGames = 0;
 let wins = 0;
@@ -27,11 +26,9 @@ function liftShell(userGuess) {
     totalDisplay.textContent = totalGames;
 
     if (guess === lift) {
-        //result = 'win';               **************
         wins++;
         winsDisplay.textContent = wins;
     } else {
-        //result = 'lose';                  ****************
         lossesDisplay.textContent = totalGames - wins;
     }
 
@@ -80,8 +77,6 @@ function displayShells() {
         pearl1.classList.add('hidden');
         pearl2.classList.add('hidden');
         pearl3.classList.add('hidden');
-        display1.classList.add('hidden');
-        display2.classList.add('hidden');
         display1.textContent = '';
         display2.textContent = '';
         display3.textContent = '';
@@ -108,18 +103,33 @@ guess1.addEventListener('click', () => {
     liftShell('left');
     pearlLocation();
     gameState = 'results';
+    if (guess === lift) {
+        display1.textContent = 'Found it!';
+    } else {
+        display1.textContent = 'Not here!';
+    }
 });
 guess2.addEventListener('click', () => {
     shell2.classList.add('reveal');
     liftShell('middle');
     pearlLocation();
     gameState = 'results';
+    if (guess === lift) {
+        display2.textContent = 'Found it!';
+    } else {
+        display2.textContent = 'Not here!';
+    }
 });
 guess3.addEventListener('click', () => {
     shell3.classList.add('reveal');
     liftShell('right');
     pearlLocation();
     gameState = 'results';
+    if (guess === lift) {
+        display3.textContent = 'Found it!';
+    } else {
+        display3.textContent = 'Not here!';
+    }
 });
 
 playAgainButton.addEventListener('click', () => {

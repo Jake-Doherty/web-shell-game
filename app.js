@@ -5,7 +5,7 @@ import { getRandomItem } from './utils.js';
 let gameState = 'guess'; // guess or results
 let guess = ''; // left, right, middle
 let lift = ''; // left, right, middle
-// let result = ''; // win/lose
+// gi
 
 let totalGames = 0;
 let wins = 0;
@@ -27,11 +27,11 @@ function liftShell(userGuess) {
     totalDisplay.textContent = totalGames;
 
     if (guess === lift) {
-        //result = 'win';
+        //result = 'win';               **************
         wins++;
         winsDisplay.textContent = wins;
     } else {
-        //result = 'lose';
+        //result = 'lose';                  ****************
         lossesDisplay.textContent = totalGames - wins;
     }
 

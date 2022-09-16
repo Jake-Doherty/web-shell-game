@@ -5,7 +5,7 @@ import { getRandomItem } from './utils.js';
 let gameState = 'guess'; // guess or results
 let guess = ''; // left, right, middle
 let lift = ''; // left, right, middle
-let result = ''; // win/lose
+// let result = ''; // win/lose
 
 let totalGames = 0;
 let wins = 0;
@@ -27,11 +27,11 @@ function liftShell(userGuess) {
     totalDisplay.textContent = totalGames;
 
     if (guess === lift) {
-        result = 'win';
+        //result = 'win';
         wins++;
         winsDisplay.textContent = wins;
     } else {
-        result = 'lose';
+        //result = 'lose';
         lossesDisplay.textContent = totalGames - wins;
     }
 
@@ -64,6 +64,7 @@ const guess2 = document.getElementById('guess-2');
 const guess3 = document.getElementById('guess-3');
 
 // display
+const guessButtons = document.getElementById('guesses');
 const display1 = document.getElementById('display-1');
 const display2 = document.getElementById('display-2');
 const display3 = document.getElementById('display-3');
@@ -72,6 +73,7 @@ const playAgainButton = document.getElementById('play-again-button');
 
 function displayShells() {
     if (gameState === 'guess') {
+        guessButtons.classList.remove('hidden');
         shell1.classList.remove('reveal');
         shell2.classList.remove('reveal');
         shell3.classList.remove('reveal');
@@ -129,6 +131,7 @@ playAgainButton.addEventListener('click', () => {
 
 function displayResults() {
     if (gameState === 'results') {
+        guessButtons.classList.add('hidden');
         resultSection.classList.remove('hidden');
         pearlLocation();
     }

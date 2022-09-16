@@ -1,6 +1,4 @@
 /* Imports */
-// import { getRandomItem } from './utils.js';
-
 import { getRandomItem } from './utils.js';
 
 /* State */
@@ -21,27 +19,20 @@ function loadPage() {
     displayResults();
 }
 
-function pearlLocation() {
-    if (lift === 'left') {
-        pearl1.classList.remove('hidden');
-    } else if (lift === 'middle') {
-        pearl2.classList.remove('hidden');
-    } else if (lift === 'right') {
-        pearl3.classList.remove('hidden');
-    }
-}
-
 function liftShell(userGuess) {
     gameState = 'results';
     guess = userGuess;
     lift = getRandomItem(choices);
     totalGames++;
+    totalDisplay.textContent = totalGames;
 
     if (guess === lift) {
         result = 'win';
         wins++;
+        winsDisplay.textContent = wins;
     } else {
         result = 'lose';
+        lossesDisplay.textContent = totalGames - wins;
     }
 
     loadPage();
@@ -53,9 +44,9 @@ function liftShell(userGuess) {
 // get DOM
 
 // Scoreboard
-// const totalDisplay = document.getElementById('total-display');
-// const winsDisplay = document.getElementById('wins-display');
-// const lossesDisplay = document.getElementById('losses-display');
+const totalDisplay = document.getElementById('total-display');
+const winsDisplay = document.getElementById('wins-display');
+const lossesDisplay = document.getElementById('losses-display');
 
 // Shells
 const shell1 = document.getElementById('shell-1');
@@ -84,6 +75,18 @@ function displayShells() {
     }
 }
 
+function pearlLocation() {
+    if (lift === 'left') {
+        pearl1.classList.remove('hidden');
+    } else if (lift === 'middle') {
+        pearl2.classList.remove('hidden');
+    } else if (lift === 'right') {
+        pearl3.classList.remove('hidden');
+    }
+}
+
+function compLift(compGuess) {}
+
 // event listeners
 guess1.addEventListener('click', () => {
     shell1.classList.add('reveal');
@@ -93,16 +96,18 @@ guess1.addEventListener('click', () => {
 guess2.addEventListener('click', () => {
     shell2.classList.add('reveal');
     liftShell('middle');
+    gameState = 'results';
 });
 guess3.addEventListener('click', () => {
     shell3.classList.add('reveal');
     liftShell('right');
+    gameState = 'results';
 });
 
 // Results
 const display1 = document.getElementById('display-1');
 const display2 = document.getElementById('display-2');
-// const display3 = document.getElementById('display-3');
+const display3 = document.getElementById('display-3');
 const resultSection = document.getElementById('results');
 
 function displayResults() {

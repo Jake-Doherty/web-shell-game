@@ -78,13 +78,10 @@ function displayShells() {
 function pearlLocation() {
     if (lift === 'left') {
         pearl1.classList.remove('hidden');
-        shell1.classList.add('reveal');
     } else if (lift === 'middle') {
         pearl2.classList.remove('hidden');
-        shell2.classList.add('reveal');
     } else if (lift === 'right') {
         pearl3.classList.remove('hidden');
-        shell3.classList.add('reveal');
     }
 }
 
@@ -92,7 +89,6 @@ function pearlLocation() {
 guess1.addEventListener('click', () => {
     shell1.classList.add('reveal');
     liftShell('left');
-    pearlLocation();
     gameState = 'results';
 });
 guess2.addEventListener('click', () => {
@@ -107,9 +103,9 @@ guess3.addEventListener('click', () => {
 });
 
 // Results
-// const display1 = document.getElementById('display-1');
-// const display2 = document.getElementById('display-2');
-// const display3 = document.getElementById('display-3');
+const display1 = document.getElementById('display-1');
+const display2 = document.getElementById('display-2');
+const display3 = document.getElementById('display-3');
 const resultSection = document.getElementById('results');
 
 function displayResults() {
